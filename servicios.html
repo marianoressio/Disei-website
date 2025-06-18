@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DISEI - Servicios</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        diseiBlue: '#323B82',
+                        diseilightBlue: '#75C1E3',
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        a,
+        button,
+        .hover-effect-target {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #4a5568;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-close-btn:hover {
+            color: #1a202c;
+        }
+
+        .modal-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 0.375rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .modal-title-container svg {
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+
+<body class="bg-white font-montserrat text-gray-800">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full bg-white shadow-lg z-50">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex-shrink-0"><img src="img/logos/disei-logo.png" alt="DISEI Logo" class="h-12"></div>
+            <button id="menu-btn" class="text-diseiBlue md:hidden focus:outline-none text-3xl">☰</button>
+            <ul id="menu" class="hidden md:flex space-x-6 text-gray-800 font-normal uppercase">
+                <li><a href="inicio.html" class="hover:text-diseiBlue">Inicio</a></li>
+                <li><a href="nosotros.html" class="hover:text-diseiBlue">Nosotros</a></li>
+                <li><a href="servicios.html" class="hover:text-diseiBlue">Servicios</a></li>
+                <li><a href="clientes.html" class="hover:text-diseiBlue">Clientes</a></li>
+                <li><a href="proyectos.html" class="hover:text-diseiBlue">Proyectos</a></li>
+                <li><a href="contacto.html" class="hover:text-diseiBlue">Contacto</a></li>
+            </ul>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
+            <ul class="space-y-2 text-gray-800 font-normal uppercase">
+                <li><a href="inicio.html" class="block hover:text-diseiBlue">Inicio</a></li>
+                <li><a href="nosotros.html" class="block hover:text-diseiBlue">Nosotros</a></li>
+                <li><a href="servicios.html" class="block hover:text-diseiBlue">Servicios</a></li>
+                <li><a href="clientes.html" class="block hover:text-diseiBlue">Clientes</a></li>
+                <li><a href="proyectos.html" class="block hover:text-diseiBlue">Proyectos</a></li>
+                <li><a href="contacto.html" class="block hover:text-diseiBlue">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Servicios Section -->
+    <section class="relative pt-32 pb-12 px-6 sm:px-12 overflow-hidden">
+        <div class="absolute top-0 right-0 w-1 h-full opacity-50 bg-diseiBlue/5 -z-10"></div>
+        <div class="container mx-auto relative z-10">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-diseiBlue mb-12 text-center"
+                data-aos="fade-down">Nuestros servicios</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+
+                <!-- Tarjeta 1: Operación y Mantenimiento -->
+                <div class="p-4 sm:p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                    data-aos="fade-up" onclick="openModal('modal-operacion')">
+                    <div class="flex items-center mb-3"><svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-8 w-8 text-diseiBlue mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        <h3 class="text-lg sm:text-xl font-semibold text-diseiBlue">Operación y Mantenimiento</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Operación y mantenimiento de redes eléctricas.</p>
+                </div>
+                <!-- Tarjeta 2: Construcción de Líneas -->
+                <div class="p-4 sm:p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                    data-aos="fade-up" data-aos-delay="100" onclick="openModal('modal-lineas')">
+                    <div class="flex items-center mb-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            class="h-8 w-8 text-diseiBlue mr-3">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12.75 19.5v-.75a7.5 7.5 0 0 0-7.5-7.5H4.5m0-6.75h.75c7.87 0 14.25 6.38 14.25 14.25v.75M6 18.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                        </svg>
+                        <h3 class="text-lg sm:text-xl font-semibold text-diseiBlue">Construcción de Líneas</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Construcción de líneas de alta, media y baja tensión.</p>
+                </div>
+                <!-- Tarjeta 3: Estaciones Transformadoras -->
+                <div class="p-4 sm:p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                    data-aos="fade-up" data-aos-delay="200" onclick="openModal('modal-estaciones')">
+                    <div class="flex items-center mb-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            class="h-8 w-8 text-diseiBlue mr-3">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7m0 0a3 3 0 0 1-3 3m0 3h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Zm-3 6h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Z" />
+                        </svg>
+                        <h3 class="text-lg sm:text-xl font-semibold text-diseiBlue">Estaciones Transformadoras</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Construcción de estaciones transformadoras AT/MT.</p>
+                </div>
+                <!-- Tarjeta 4: Subestaciones -->
+                <div class="p-4 sm:p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                    data-aos="fade-up" data-aos-delay="50" onclick="openModal('modal-subestaciones')">
+                    <div class="flex items-center mb-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            class="h-8 w-8 text-diseiBlue mr-3">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21.75 17.25v-.228a4.5 4.5 0 0 0-.12-1.03l-2.268-9.64a3.375 3.375 0 0 0-3.285-2.602H7.923a3.375 3.375 0 0 0-3.285 2.602l-2.268 9.64a4.5 4.5 0 0 0-.12 1.03v.228m19.5 0a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3m19.5 0a3 3 0 0 0-3-3H5.25a3 3 0 0 0-3 3m16.5 0h.008v.008h-.008v-.008Zm-3 0h.008v.008h-.008v-.008Z" />
+                        </svg>
+                        <h3 class="text-lg sm:text-xl font-semibold text-diseiBlue">Subestaciones</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Construcción de subestaciones transformadoras MT/BT.</p>
+                </div>
+                <!-- Tarjeta 5: Mantenimiento Industrial -->
+                <div class="p-4 sm:p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                    data-aos="fade-up" data-aos-delay="150" onclick="openModal('modal-industrial')">
+                    <div class="flex items-center mb-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            class="h-8 w-8 text-diseiBlue mr-3">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819" />
+                        </svg>
+                        <h3 class="text-lg sm:text-xl font-semibold text-diseiBlue">Mantenimiento Industrial</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Mantenimiento de instalaciones industriales.</p>
+                </div>
+                <!-- Tarjeta 6: Servicios Mineros -->
+                <div class="p-4 sm:p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                    data-aos="fade-up" data-aos-delay="250" onclick="openModal('modal-mineria')">
+                    <div class="flex items-center mb-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            class="h-8 w-8 text-diseiBlue mr-3">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+                        </svg>
+                        <h3 class="text-lg sm:text-xl font-semibold text-diseiBlue">Servicios Mineros</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Servicios eléctricos para la industria minera.</p>
+                </div>
+                <!-- Tarjeta 7: Generación Eléctrica -->
+                <div class="p-4 sm:p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                    data-aos="fade-up" data-aos-delay="100" onclick="openModal('modal-generacion')">
+                    <div class="flex items-center mb-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            class="h-8 w-8 text-diseiBlue mr-3">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 10.5h.375c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125H21M4.5 10.5h6.75V15H4.5v-4.5ZM3.75 18h15A2.25 2.25 0 0 0 21 15.75v-6a2.25 2.25 0 0 0-2.25-2.25h-15A2.25 2.25 0 0 0 1.5 9.75v6A2.25 2.25 0 0 0 3.75 18Z" />
+                        </svg>
+                        <h3 class="text-lg sm:text-xl font-semibold text-diseiBlue">Generación Eléctrica</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Generación de energía eléctrica.</p>
+                </div>
+                <!-- Tarjeta 8: Parques Solares -->
+                <div class="p-4 sm:p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                    data-aos="fade-up" data-aos-delay="200" onclick="openModal('modal-solares')">
+                    <div class="flex items-center mb-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            class="h-8 w-8 text-diseiBlue mr-3">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                        </svg>
+                        <h3 class="text-lg sm:text-xl font-semibold text-diseiBlue">Parques Solares</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Construcción de parques solares.</p>
+                </div>
+                <!-- Tarjeta 9: Obras Civiles -->
+                <div class="p-4 sm:p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                    data-aos="fade-up" data-aos-delay="300" onclick="openModal('modal-civiles')">
+                    <div class="flex items-center mb-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            class="h-8 w-8 text-diseiBlue mr-3">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />
+                        </svg>
+                        <h3 class="text-lg sm:text-xl font-semibold text-diseiBlue">Obras Civiles</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Obras civiles asociadas a proyectos eléctricos e industriales.</p>
+                </div>
+                <!-- Tarjeta 10: Hormigón Elaborado -->
+                <div class="p-4 sm:p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                    data-aos="fade-up" data-aos-delay="150" onclick="openModal('modal-hormigon')">
+                    <div class="flex items-center mb-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            class="h-8 w-8 text-diseiBlue mr-3">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125V6.375c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v.001c0 .621.504 1.125 1.125 1.125z" />
+                        </svg>
+                        <h3 class="text-lg sm:text-xl font-semibold text-diseiBlue">Hormigón Elaborado</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Planta propia de hormigón elaborado.</p>
+                </div>
+                <!-- Tarjeta 11: Perforaciones -->
+                <div class="p-4 sm:p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                    data-aos="fade-up" data-aos-delay="250" onclick="openModal('modal-perforaciones')">
+                    <div class="flex items-center mb-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            class="h-8 w-8 text-diseiBlue mr-3">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
+                        </svg>
+                        <h3 class="text-lg sm:text-xl font-semibold text-diseiBlue">Perforaciones</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Para extracción de agua o muestras mineras</p>
+                </div>
+                <!-- Tarjeta 12: GIS  -->
+                <div class="p-4 sm:p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                    data-aos="fade-up" data-aos-delay="250" onclick="openModal('modal-gis')">
+                    <div class="flex items-center mb-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            class="h-8 w-8 text-diseiBlue mr-3">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" />
+                        </svg>
+                        <h3 class="text-lg sm:text-xl font-semibold text-diseiBlue">Digitalización GIS Eléctrico</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Digitalización de redes eléctricas en AT/MT/BT</p>
+                </div>
+
+            </div>
+            <div class="text-center mt-12" data-aos="zoom-in" data-aos-delay="300">
+                <a href="contacto.html"
+                    class="bg-diseiBlue text-white px-6 py-3 rounded-lg hover:bg-diseilightBlue transition duration-300 transform hover:scale-105 text-base font-semibold">Solicita
+                    un Presupuesto</a>
+            </div>
+        </div>
+    </section>
+    <!-- MODALES -->
+    <!-- Modal 1: Operación y Mantenimiento -->
+    <div id="modal-operacion" class="modal-overlay" onclick="closeModalIfOverlay(event, 'modal-operacion')">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeModal('modal-operacion')">×</button>
+            <div class="modal-title-container"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-diseiBlue"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <h2 class="text-2xl font-bold text-diseiBlue">Operación y Mantenimiento</h2>
+            </div>
+            <img src="img/servicios/servicios-mantenimiento.jpg" alt="Operación y Mantenimiento" class="modal-image">
+            <ul class="space-y-1 text-sm text-gray-600">
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Construcción de Líneas de Media Tensión 33 kV y 13,2 kV - Aéreas y Subterráneas </li>
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Construcción de Redes de Baja Tensión 4 kV - Aéreas y Subterráneas</li>
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Construcción de Estaciones y Subestaciones Transformadoras Alta / Media / Baja Tensión</li>
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Operación y Mantenimiento Redes Alta / Media / Baja Tensión</li>
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Operación y Mantenimiento Estaciones y Subestaciones Transformadoras</li>
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Operación y Mantenimiento Generadores Eléctricos</li>
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Digitalización de redes eléctricas AT / MT / BT - Sistema Eléctrico de Distribución de Energía
+                    en la
+                    provincia de San Juan, “Naturgy” Energía San Juan</li>
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Servicios prestados a “Naturgy” Energía San Juan en el nuevo contrato marco: ejecución de
+                    altas de
+                    nuevos clientes, atención de reclamos técnicos, mantenimientos por emergencias, inspecciones a
+                    clientes
+                    por fraude o hurto, suspensiones, rehabilitaciones y cortes de suministros por deuda.</li>
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Atención del servicio eléctrico y obras de crecimiento en el nuevo contrato marco en los
+                    Departamentos y
+                    Sucursales zonas Norte y Sur de San Juan, Departamentos de Rawson, Pocito, 25 de Mayo, Sarmiento,
+                    Chimbas, Albardón, Angaco, Iglesia y Jáchal.</li>
+                .
+            </ul>
+        </div>
+    </div>
+    <!-- Modal 2: Construcción de Líneas -->
+    <div id="modal-lineas" class="modal-overlay" onclick="closeModalIfOverlay(event, 'modal-lineas')">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeModal('modal-lineas')">×</button>
+            <div class="modal-title-container"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-diseiBlue">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12.75 19.5v-.75a7.5 7.5 0 0 0-7.5-7.5H4.5m0-6.75h.75c7.87 0 14.25 6.38 14.25 14.25v.75M6 18.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                </svg>
+                <h2 class="text-2xl font-bold text-diseiBlue">Construcción de Líneas</h2>
+            </div>
+            <img src="img/servicios/servicio-lineas.jpg" alt="Construcción de Líneas" class="modal-image">
+            <ul class="space-y-1 text-sm text-gray-600">
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Construcción de Línea de Alta Tensión doble terna 132 kV “La Bebida - San Juan Sur” - EPRE
+                </li>
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Construcción de Línea de Media Tensión doble terna 33 kV “San Juan Sur - Retamito Sur” - EPRE
+                </li>
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Construcción de Línea de Media Tensión doble terna 33 kV “Ruta Perilago - Dique Punta Negra” -
+                    EPRE</li>
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Construcción de Línea de Media Tensión triple terna 33 kV “Calle 5” - EPRE</li>
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Construcción de Línea de Media Tensión simple terna 13,2 kV “Alimentación Anchipurac” - EPRE
+                </li>
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Construcción de Líneas de Media Tensión 33 kV y 13,2 kV - Aéreas y Subterráneas - Distribución
+                    de
+                    Energía
+                    en la provincia de San Juan - Naturgy</li>
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Construcción de Redes de Baja Tensión 4 kV - Aéreas y Subterráneas - Distribución de Energía
+                    en la provincia de San Juan - Naturgy</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Modal 3: Estaciones Transformadoras -->
+    <div id="modal-estaciones" class="modal-overlay" onclick="closeModalIfOverlay(event, 'modal-estaciones')">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeModal('modal-estaciones')">×</button>
+            <div class="modal-title-container"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-diseiBlue">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7m0 0a3 3 0 0 1-3 3m0 3h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Zm-3 6h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Z" />
+                </svg>
+                <h2 class="text-2xl font-bold text-diseiBlue">Estaciones Transformadoras</h2>
+            </div>
+            <img src="img/servicios/servicios-estaciones.jpg" alt="Estaciones Transformadoras" class="modal-image">
+            <ul class="space-y-1 text-sm text-gray-600">
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Construcción de Estaciones Transformadoras Alta / Media Tensión</li>
+                <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>Operación y Mantenimiento Estaciones Transformadoras</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Modal 4: Subestaciones -->
+    <div id="modal-subestaciones" class="modal-overlay" onclick="closeModalIfOverlay(event, 'modal-subestaciones')">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeModal('modal-subestaciones')">×</button>
+            <div class="modal-title-container"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-diseiBlue">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21.75 17.25v-.228a4.5 4.5 0 0 0-.12-1.03l-2.268-9.64a3.375 3.375 0 0 0-3.285-2.602H7.923a3.375 3.375 0 0 0-3.285 2.602l-2.268 9.64a4.5 4.5 0 0 0-.12 1.03v.228m19.5 0a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3m19.5 0a3 3 0 0 0-3-3H5.25a3 3 0 0 0-3 3m16.5 0h.008v.008h-.008v-.008Zm-3 0h.008v.008h-.008v-.008Z" />
+                </svg>
+                <h2 class="text-2xl font-bold text-diseiBlue">Subestaciones</h2>
+            </div>
+            <img src="img/servicios/servicio-subestaciones.jpg" alt="Subestaciones" class="modal-image">
+            <ul class="space-y-1 text-sm text-gray-600"></ul>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Construcción de Subestaciones Transformadoras Media / Baja Tensión</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Operación y Mantenimiento Subestaciones Transformadoras</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Modal 5: Mantenimiento Industrial -->
+    <div id="modal-industrial" class="modal-overlay" onclick="closeModalIfOverlay(event, 'modal-industrial')">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeModal('modal-industrial')">×</button>
+            <div class="modal-title-container"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-diseiBlue">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819" />
+                </svg>
+                <h2 class="text-2xl font-bold text-diseiBlue">Mantenimiento Industrial</h2>
+            </div>
+            <img src="img/servicios/servicio-industrial.jpg" alt="Mantenimiento Industrial" class="modal-image">
+            <ul class="space-y-1 text-sm text-gray-600"></ul>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Mantenimiento de Equipos Eléctricos e Industriales</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Mantenimiento de Equipos de Medición y Control</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Mantenimiento de Sistemas de Protección y Automatización</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Mantenimiento de Sistemas de Iluminación Industrial</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Mantenimiento de Sistemas de Energía Ininterrumpida (UPS)</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Mantenimiento de Sistemas de Tierra y Pararrayos</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Modal 6: Servicios Mineros -->
+    <div id="modal-mineria" class="modal-overlay" onclick="closeModalIfOverlay(event, 'modal-mineria')">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeModal('modal-mineria')">×</button>
+            <div class="modal-title-container"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-diseiBlue">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+                </svg>
+                <h2 class="text-2xl font-bold text-diseiBlue">Servicios Mineros</h2>
+            </div>
+            <img src="img/servicios/servicio-mineria.jpg" alt="Servicios Mineros" class="modal-image">
+            <ul class="space-y-1 text-sm text-gray-600"></ul>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Mantenimiento Edilicio de Campamentos</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Mantenimiento electromecánico de equipos de planta y proceso</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Mantenimiento mecánico de equipos viales</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Obras civiles y metalúrgicas</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Obras eléctricas y electromecánicas</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Mantenimiento de caminos</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Tratamiento de agua</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Modal 7: Generación Eléctrica -->
+    <div id="modal-generacion" class="modal-overlay" onclick="closeModalIfOverlay(event, 'modal-generacion')">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeModal('modal-generacion')">×</button>
+            <div class="modal-title-container"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-diseiBlue">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21 10.5h.375c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125H21M4.5 10.5h6.75V15H4.5v-4.5ZM3.75 18h15A2.25 2.25 0 0 0 21 15.75v-6a2.25 2.25 0 0 0-2.25-2.25h-15A2.25 2.25 0 0 0 1.5 9.75v6A2.25 2.25 0 0 0 3.75 18Z" />
+                </svg>
+                <h2 class="text-2xl font-bold text-diseiBlue">Generación Eléctrica</h2>
+            </div>
+            <img src="img/servicios/servicio-generacion.jpg" alt="Generación Eléctrica" class="modal-image">
+            <ul class="space-y-1 text-sm text-gray-600"></ul>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Servicio de alquiler de Grupos Electrógenos 315 kVA, 200 kVA, 150 kVA, 125 kVA y 80 kVA</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Contacto: Francisco Botto - Teléfono: +54 9 264 505-0845</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Modal 8: Parques Solares -->
+    <div id="modal-solares" class="modal-overlay" onclick="closeModalIfOverlay(event, 'modal-solares')">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeModal('modal-solares')">×</button>
+            <div class="modal-title-container"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-diseiBlue">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                </svg>
+                <h2 class="text-2xl font-bold text-diseiBlue">Parques Solares</h2>
+            </div>
+            <img src="img/servicios/parques-solares.jpg" alt="Parques Solares" class="modal-image">
+            <ul class="space-y-1 text-sm text-gray-600"></ul>
+            <li class="flex items-start">
+                <svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0" fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <div>
+                    <p class="text-sm text-gray-700">
+                        Parque Solar Ullum I: tendido de líneas, obra civil de bases de transformadores e inversores,
+                        fibra óptica, servicios auxiliares.
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1"><strong>Cliente:</strong> Genneia – Subcontrato 360 Energy</p>
+                </div>
+            </li>
+
+            <li class="flex items-start">
+                <svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0" fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <div>
+                    <p class="text-sm text-gray-700">
+                        Parque Solar Ullum II: tendido de líneas, obra civil de bases de transformadores e inversores,
+                        fibra óptica, servicios auxiliares.
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1"><strong>Cliente:</strong> Genneia – Subcontrato 360 Energy</p>
+                </div>
+            </li>
+
+            <li class="flex items-start">
+                <svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0" fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <div>
+                    <p class="text-sm text-gray-700">
+                        Parque Solar Ullum III: tendido de líneas, obra civil de bases de transformadores e inversores,
+                        fibra óptica, servicios auxiliares.
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1"><strong>Cliente:</strong> Genneia – Subcontrato 360 Energy</p>
+                </div>
+            </li>
+
+            <li class="flex items-start">
+                <svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0" fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <div>
+                    <p class="text-sm text-gray-700">
+                        Línea de Media Tensión triple terna 33 kV para evacuación de Parques Solares I, II y III:
+                        construcción y mantenimiento.
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1"><strong>Cliente:</strong> Genneia – Subcontrato 360 Energy</p>
+                </div>
+            </li>
+
+            <li class="flex items-start">
+                <svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0" fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <div>
+                    <p class="text-sm text-gray-700">
+                        Parque Solar Zonda I: tendido de líneas y obra civil de bases para transformadores e inversores.
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1"><strong>Cliente:</strong> YPF LUZ</p>
+                </div>
+            </li>
+
+            <li class="flex items-start">
+                <svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0" fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <div>
+                    <p class="text-sm text-gray-700">
+                        Parque Solar Zonda I: mantenimiento del parque solar.
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1"><strong>Cliente:</strong> YPF LUZ</p>
+                </div>
+            </li>
+
+            </ul>
+        </div>
+    </div>
+    <!-- Modal 9: Obras Civiles -->
+    <div id="modal-civiles" class="modal-overlay" onclick="closeModalIfOverlay(event, 'modal-civiles')">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeModal('modal-civiles')">×</button>
+            <div class="modal-title-container"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-diseiBlue">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />
+                </svg>
+                <h2 class="text-2xl font-bold text-diseiBlue">Obras Civiles</h2>
+            </div>
+            <img src="img/servicios/servicio-civiles.jpg" alt="Obras Civiles" class="modal-image">
+            <ul class="space-y-1 text-sm text-gray-600"></ul>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Obras Civiles y Edilicias</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Construcción de Obras Civiles para Líneas de Media y Alta Tensión</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Construcción de Obras Civiles para Estaciones Transformadoras</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Construcción de Obras Civiles para Subestaciones Transformadoras</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Construcción de Obras Civiles para Parques Solares</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Modal 10: Hormigón Elaborado -->
+    <div id="modal-hormigon" class="modal-overlay" onclick="closeModalIfOverlay(event, 'modal-hormigon')">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeModal('modal-hormigon')">×</button>
+            <div class="modal-title-container"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-diseiBlue">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125V6.375c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v.001c0 .621.504 1.125 1.125 1.125z" />
+                </svg>
+                <h2 class="text-2xl font-bold text-diseiBlue">Hormigón Elaborado</h2>
+            </div>
+            <img src="img/servicios/servicio-hormigon.jpg" alt="Hormigón Elaborado" class="modal-image">
+            <ul class="space-y-1 text-sm text-gray-600"></ul>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Plantas de Hormigon Elaborado, departamento de Chimbas y Sarmiento, provincia de San Juan.</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Provisión de Hormigón Elaborado para Obras Civiles y Edilicias</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Provisión de Hormigón Elaborado para Líneas de Media y Alta Tensión</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Provisión de Hormigón Elaborado para Estaciones Transformadoras</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Provisión de Hormigón Elaborado para Subestaciones Transformadoras</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Provisión de Hormigón Elaborado para Parques Solares</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Modal 11: Perforaciones -->
+    <div id="modal-perforaciones" class="modal-overlay" onclick="closeModalIfOverlay(event, 'modal-perforaciones')">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeModal('modal-perforaciones')">×</button>
+            <div class="modal-title-container"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-diseiBlue">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
+                </svg>
+                <h2 class="text-2xl font-bold text-diseiBlue">Perforaciones</h2>
+            </div>
+            <img src="img/servicios/servicio-perforaciones.jpg" alt="Perforaciones" class="modal-image">
+            <ul class="space-y-1 text-sm text-gray-600"></ul>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Perforaciones para extracciones de agua subterránea</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Perforaciones para extracciones de muestras mineras</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Perforaciones para extracciones de muestras de suelo</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Perforaciones para extracciones de agua para riego agricola</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Modal 12: GIS Electrico -->
+    <div id="modal-gis" class="modal-overlay" onclick="closeModalIfOverlay(event, 'modal-gis')">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeModal('modal-gis')">×</button>
+            <div class="modal-title-container"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-diseiBlue">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" />
+                </svg>
+                <h2 class="text-2xl font-bold text-diseiBlue">Digitalización GIS Eléctrico</h2>
+            </div>
+            <img src="img/servicios/servicio-gis.jpg" alt="GIS" class="modal-image">
+            <ul class="space-y-1 text-sm text-gray-600"></ul>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Digitalización de redes eléctricas AT / MT / BT - EDEMSA, Sistema Eléctrico de Distribución de
+                Energía
+                en la provincia de Mendoza</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                </svg>Digitalización de redes eléctricas AT / MT / BT - Naturgy, Sistema Eléctrico de Distribución de
+                Energía
+                en la provincia de San Juan</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-diseiBlue py-8 mt-12">
+        <div
+            class="container mx-auto px-6 sm:px-12 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6 text-white text-sm">
+            <div><img src="img/logos/disei-logo-white.png" alt="DISEI Logo" class="h-10 mx-auto md:mx-0 mb-4 md:mb-0">
+            </div>
+            <div class="flex-grow md:pl-6">
+                <p>Corrientes 1060 Este, Capital, San Juan, Argentina</p>
+                <p>Tel: +54 264 570-5969 | Email: info@disei.com.ar</p>
+            </div>
+            <div class="mt-4 md:mt-0">
+                © DISEI. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50,
+            });
+        });
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function closeModalIfOverlay(event, modalId) {
+            if (event.target.id === modalId) {
+                closeModal(modalId);
+            }
+        }
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Escape") {
+                const activeModals = document.querySelectorAll('.modal-overlay.active');
+                activeModals.forEach(modal => {
+                    closeModal(modal.id);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

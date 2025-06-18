@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DISEI - Contacto</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        diseiBlue: '#323B82',
+                        diseilightBlue: '#75C1E3',
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<style>
+    /* Aplicar a enlaces, botones y otros elementos interactivos */
+    a,
+    button,
+    .hover-effect-target {
+        transition: all 0.3s ease-in-out;
+    }
+</style>
+
+<body class="bg-white font-montserrat text-gray-800">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full bg-white shadow-lg z-50">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <img src="img/logos/disei-logo.png" alt="DISEI Logo" class="h-12">
+            </div>
+
+            <!-- Botón hamburguesa (visible en móviles) -->
+            <button id="menu-btn" class="text-diseiBlue md:hidden focus:outline-none text-3xl">
+                ☰
+            </button>
+
+            <!-- Menú -->
+            <ul id="menu" class="hidden md:flex space-x-6 text-gray-800 font-normal uppercase">
+                <li><a href="inicio.html" class="hover:text-diseiBlue">Inicio</a></li>
+                <li><a href="nosotros.html" class="hover:text-diseiBlue">Nosotros</a></li>
+                <li><a href="servicios.html" class="hover:text-diseiBlue">Servicios</a></li>
+                <li><a href="clientes.html" class="hover:text-diseiBlue">Clientes</a></li>
+                <li><a href="proyectos.html" class="hover:text-diseiBlue">Proyectos</a></li>
+                <li><a href="contacto.html" class="hover:text-diseiBlue">Contacto</a></li>
+            </ul>
+        </div>
+
+        <!-- Menú desplegable (solo visible en móviles) -->
+        <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
+            <ul class="space-y-2 text-gray-800 font-normal uppercase">
+                <li><a href="inicio.html" class="block hover:text-diseiBlue">Inicio</a></li>
+                <li><a href="nosotros.html" class="block hover:text-diseiBlue">Nosotros</a></li>
+                <li><a href="servicios.html" class="block hover:text-diseiBlue">Servicios</a></li>
+                <li><a href="clientes.html" class="block hover:text-diseiBlue">Clientes</a></li>
+                <li><a href="proyectos.html" class="block hover:text-diseiBlue">Proyectos</a></li>
+                <li><a href="contacto.html" class="block hover:text-diseiBlue">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="relative pt-28 pb-16 px-6 sm:px-12 overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full"></div>
+        <div class="container mx-auto relative z-10">
+
+            <div class="mb-16 text-center" data-aos="fade-up">
+                <h3 class="text-3xl font-bold text-diseiBlue mb-4">Sumate a Nuestro Equipo</h3>
+                <p class="text-lg mb-4 text-justify max-w-2xl mx-auto">Envía tu CV a través de nuestro formulario para
+                    ser considerado en futuras oportunidades laborales.</p>
+                <a href="https://forms.gle/wFUdrfRZh3wqHfi69" target="_blank"
+                    class="inline-block bg-diseiBlue text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-900 transition duration-300 transform hover:scale-105">
+                    Enviar CV
+                </a>
+
+            </div>
+
+            <div class="mb-16 text-center" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-3xl font-bold text-diseiBlue mb-4">Contáctanos</h3>
+                <div class="max-w-xl mx-auto text-lg text-justify">
+                    <p class="mb-2"><strong>Teléfono:</strong> +54 264 570-5969</p>
+                    <p class="mb-2">
+                        <strong>Dirección:</strong>
+                        <a href="https://maps.app.goo.gl/hc3jDyMD61tsNXN59" target="_blank" rel="noopener noreferrer"
+                            class="text-diseiBlue hover:text-blue-700 underline transition-colors duration-300">
+                            Corrientes 1060 Este, Capital, San Juan, Argentina
+                        </a>
+                    </p>
+                    <p class="mb-2"><strong>Correo:</strong> info@disei.com.ar</p>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-3xl font-bold text-diseiBlue mb-4">Capacitaciones</h3>
+                <p class="text-lg mb-4 text-justify max-w-2xl mx-auto">Acceso al portal de capacitación. Se requiere
+                    autenticación de empleado.</p>
+
+                <!-- FORMULARIO DE LOGIN PARA CAPACITACIONES -->
+                <form action="login_capacitacion.php" method="POST" class="max-w-xl mx-auto">
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-2">
+                        <input type="password" id="training_password" name="training_password" placeholder="Contraseña"
+                            autocomplete="new-password" required
+                            class="p-3 border border-gray-300 rounded-lg text-base w-full sm:w-64 h-12 focus:ring-diseiBlue focus:border-diseiBlue">
+                        <button type="submit"
+                            class="bg-diseiBlue text-white px-6 py-3 rounded-lg hover:bg-blue-900 transform hover:scale-105 h-12 flex items-center justify-center w-full sm:w-auto">Acceder
+                            al Portal</button>
+                    </div>
+                </form>
+            </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-diseiBlue py-8 mt-12">
+        <div
+            class="container mx-auto px-6 sm:px-12 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6 text-white text-sm">
+            <div><img src="img/logos/disei-logo-white.png" alt="DISEI Logo" class="h-10 mx-auto md:mx-0 mb-4 md:mb-0"></div>
+            <div class="flex-grow md:pl-6">
+                <p>Corrientes 1060 Este, Capital, San Juan, Argentina</p>
+                <p>Tel: +54 264 570-5969 | Email: info@disei.com.ar</p>
+            </div>
+            <div class="mt-4 md:mt-0">
+                © DISEI. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

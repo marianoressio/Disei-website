@@ -1,0 +1,19 @@
+# Archivos de configuración sensibles
+db_config.php
+
+# Archivos temporales o de depuración que no deben estar en el repo
+generate_hash.php
+
+# Carpetas de dependencias de sistema operativo o editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Carpetas de configuración del editor
+.vscode/
+.idea/
+
+# Archivos de log
+*.log
+logs/

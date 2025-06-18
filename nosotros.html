@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DISEI - Nosotros</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        diseiBlue: '#323B82',
+                        diseilightBlue: '#75C1E3',
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        a,
+        button,
+        .hover-effect-target {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Estilos para la Línea de Tiempo */
+        .timeline {
+            position: relative;
+            margin-top: 2rem;
+            /* Espacio arriba */
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+            /* Espacio entre items */
+            padding: 1rem;
+            background-color: #f9fafb;
+            /* bg-gray-50 */
+            border-radius: 0.375rem;
+            /* rounded-md */
+            border-left: 4px solid #75C1E3;
+            /* Borde izquierdo con diseilightBlue */
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            /* bold */
+            color: #323B82;
+            /* diseiBlue */
+            margin-bottom: 0.5rem;
+            /* mb-2 */
+            font-size: 1rem;
+            /* text-base */
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            /* semibold */
+            color: #1f2937;
+            /* text-gray-800 */
+            margin-bottom: 0.25rem;
+            /* mb-1 */
+            font-size: 0.875rem;
+            /* text-sm */
+        }
+
+        .timeline-description {
+            font-size: 0.875rem;
+            /* text-sm */
+            color: #4B5563;
+            /* text-gray-600 */
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body class="bg-white font-montserrat text-gray-800">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full bg-white shadow-lg z-50">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex-shrink-0">
+                <img src="img/logos/disei-logo.png" alt="DISEI Logo" class="h-12">
+            </div>
+            <button id="menu-btn" class="text-diseiBlue md:hidden focus:outline-none text-3xl">☰</button>
+            <ul id="menu" class="hidden md:flex space-x-6 text-gray-800 font-normal uppercase">
+                <li><a href="inicio.html" class="hover:text-diseiBlue">Inicio</a></li>
+                <li><a href="nosotros.html" class="hover:text-diseiBlue">Nosotros</a></li>
+                <li><a href="servicios.html" class="hover:text-diseiBlue">Servicios</a></li>
+                <li><a href="clientes.html" class="hover:text-diseiBlue">Clientes</a></li>
+                <li><a href="proyectos.html" class="hover:text-diseiBlue">Proyectos</a></li>
+                <li><a href="contacto.html" class="hover:text-diseiBlue">Contacto</a></li>
+            </ul>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
+            <ul class="space-y-2 text-gray-800 font-normal uppercase">
+                <li><a href="inicio.html" class="block hover:text-diseiBlue">Inicio</a></li>
+                <li><a href="nosotros.html" class="block hover:text-diseiBlue">Nosotros</a></li>
+                <li><a href="servicios.html" class="block hover:text-diseiBlue">Servicios</a></li>
+                <li><a href="clientes.html" class="block hover:text-diseiBlue">Clientes</a></li>
+                <li><a href="proyectos.html" class="block hover:text-diseiBlue">Proyectos</a></li>
+                <li><a href="contacto.html" class="block hover:text-diseiBlue">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Nosotros Section -->
+    <section class="relative pt-32 pb-12 px-6 sm:px-12 overflow-hidden">
+        <div class="container mx-auto relative z-10">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-diseiBlue mb-8 text-left" data-aos="fade-right">
+                Nosotros
+            </h2>
+            <div class="flex flex-col md:flex-row md:items-start gap-10 lg:gap-16">
+                <div class="w-full md:w-1/2 space-y-4" data-aos="fade-right" data-aos-delay="100">
+                    <p class="text-base sm:text-lg text-justify">
+                        En DISEI, nos dedicamos a brindar servicios eléctricos excepcionales que satisfacen las
+                        necesidades únicas de nuestros clientes en San Juan.
+                    </p>
+                    <p class="text-base sm:text-lg text-justify">
+                        Con una sólida trayectoria de más de 25
+                        años en el sector eléctrico, nuestro equipo de electricistas e ingenieros calificados está
+                        comprometido con los más altos estándares de calidad, seguridad y cumplimiento normativo.
+                    </p>
+                    <p class="text-base sm:text-lg text-justify">
+                        Hemos construido una reputación de confiabilidad y excelencia a través de la ejecución exitosa
+                        de numerosos proyectos en toda la provincia.
+                    </p>
+
+                    <!-- INICIO DE LA LÍNEA DE TIEMPO -->
+                    <div class="timeline mt-8">
+                        <h3 class="text-xl font-semibold text-diseiBlue mb-6">Nuestra Trayectoria</h3>
+
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                            <div class="timeline-date">2000 - Fundación</div>
+                            <div class="timeline-title">Inicios</div>
+                            <p class="timeline-description">
+                                DISEI comienza sus operaciones, se desarrollan tareas enfocadas en el relevamiento y
+                                actualización de Bases de
+                                Datos GIS eléctricos.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                            <div class="timeline-date">2007 - Distribución de energía eléctrica</div>
+                            <div class="timeline-title">Redes Eléctricas AT, MT y BT</div>
+                            <p class="timeline-description">
+                                Ampliamos las actividades
+                                correspondientes a las empresas distribuidoras de energía como obras y mantenimientos en
+                                los
+                                distintos niveles de tensión y áreas comerciales, incorpora nuevos servicios en el rubro
+                                de la
+                                minería.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                            <div class="timeline-date">2018 - Energías Renovables</div>
+                            <div class="timeline-title">Parques Solares</div>
+                            <p class="timeline-description">
+                                Sumamos a nuestras obras de energía eléctrica,
+                                proyectos de energías renovables, en distintos parques solares, en los departamentos de
+                                Ullum e
+                                Iglesia.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+                            <div class="timeline-date">2024 - Actualidad</div>
+                            <div class="timeline-title">Nuevos Desafíos - Distribución y Transmisión de energía
+                                eléctrica</div>
+                            <p class="timeline-description">
+                                Firma de contrato marco con Naturgy para la distribución de energía eléctrica durante
+                                los próximos 7 años, en la provincia de San Juan.
+                            <p class="timeline-description">Línea doble terna en Alta Tensión 132 kV, uniendo el
+                                departamento de Rivadavia y Sarmiento, EPRE San Juan.</p>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- FIN DE LA LÍNEA DE TIEMPO -->
+
+                </div>
+
+                <div class="w-full md:w-1/2 mt-8 md:mt-0" data-aos="fade-left" data-aos-delay="200">
+                    <img src="img/nosotros/edificio-disei.jpg" alt="Edificio DISEI"
+                        class="w-full h-auto md:max-h-[1200px] object-cover rounded-lg shadow-xl">
+                    <!-- 🔽 BLOQUE VISUAL AHORA DEBAJO DE LA IMAGEN -->
+                    <div class="mt-8 bg-white/10 p-6 rounded-xl shadow-lg space-y-4" data-aos="fade-up"
+                        data-aos-delay="500">
+                        <h3 class="text-2xl font-bold text-diseiBlue">+25 Años de Trayectoria</h3>
+                        <p class="text-base text-gray-700">
+                            En DISEI nos impulsa la excelencia y el compromiso con cada proyecto. Nuestra experiencia
+                            nos respalda y nos permite afrontar los nuevos desafíos del sector energético con visión y
+                            responsabilidad.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2 text-center">
+                            <div>
+                                <svg class="w-10 h-10 mx-auto text-diseiBlue" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+
+                                </svg>
+                                <p class="mt-2 text-diseiBlue font-semibold">Clientes Satisfechos</p>
+                            </div>
+                            <div>
+                                <svg class="w-10 h-10 mx-auto text-diseiBlue" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                </svg>
+                                <p class="mt-2 text-diseiBlue font-semibold">Experiencia</p>
+                            </div>
+                            <div>
+                                <svg class="w-10 h-10 mx-auto text-diseiBlue" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605" />
+
+                                </svg>
+                                <p class="mt-2 text-diseiBlue font-semibold">Compromiso en Obra</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Política Integrada, Misión y Visión, Código de Conducta -->
+            <div class="mt-16 max-w-4xl mx-auto">
+                <div class="mb-12" data-aos="fade-up">
+                    <h3 class="text-2xl sm:text-3xl font-bold text-diseiBlue mb-4">Política Integrada de Calidad,
+                        Seguridad en el Trabajo y Medio Ambiente</h3>
+                    <p class="text-base sm:text-lg text-justify">
+                        DISEI S.R.L. es una organización enfocada a: construcción, mantenimiento y atención de redes
+                        eléctricas de baja, media y alta tensión. Mantenimiento edilicio y electromecánico en empresas
+                        mineras e industriales. Atención de usuarios de empresas distribuidoras de servicios eléctricos.
+                    </p>
+                </div>
+                <div class="mb-12" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl sm:text-3xl font-bold text-diseiBlue mb-4">Misión</h3>
+                    <p class="text-base sm:text-lg text-justify">
+                        Satisfacer las necesidades y expectativas de nuestros clientes y demás partes interesadas,
+                        cumpliendo con los requisitos legales aplicables, brindando servicios y productos acorde a lo
+                        solicitado, con disponibilidad, flexibilidad, confiabilidad y proporcionando condiciones seguras
+                        para la prevención de lesiones y el deterioro de la salud de nuestros trabajadores y de
+                        terceros; a través de una gestión eficiente de los procesos, manteniendo un adecuado nivel
+                        ecológico, con un equipo altamente capacitado, comprometido y que participa activamente en la
+                        mejora continua de la gestión de calidad, medioambiente y de seguridad y salud; todo ello
+                        sustentado en la identificación de riesgos y oportunidades y el abordaje de los mismos por parte
+                        de todo el personal.
+                    </p>
+                </div>
+                <div class="mb-12" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-2xl sm:text-3xl font-bold text-diseiBlue mb-4">Visión</h3>
+                    <p class="text-base sm:text-lg text-justify">
+                        Ser una organización reconocida por la excelencia, la competitividad, la vocación de servicio al
+                        cliente, el cuidado del medio ambiente y la operación con altos estándares en seguridad y salud
+                        ocupacional, construyendo relaciones de largo plazo con nuestros clientes, proveedores y la
+                        sociedad en general; asegurando la rentabilidad, el crecimiento de la organización y la
+                        sustentabilidad social y medioambiental de las comunidades en las que participamos.
+                    </p>
+                </div>
+                <div class="mb-12" data-aos="fade-up" data-aos-delay="250">
+                    <h3 class="text-2xl sm:text-3xl font-bold text-diseiBlue mb-4">Código de Conducta</h3>
+                    <p class="text-base sm:text-lg text-justify">
+                        El objetivo de nuestro Código de Conducta es establecer los principios que regulan las
+                        relaciones entre los miembros de la organización,
+                        de manera tal que se desarrollen en un ambiente ético, honesto y profesional. Por tanto, el
+                        Código de Conducta aplica a todo el personal
+                        de DISEI S.R.L. y fomenta en los mandos directivos una actitud congruente, propicia la cohesión
+                        de esfuerzos individuales y la suma de
+                        ambos, e impacta directamente en el cumplimiento de los objetivos.
+                    </p>
+                </div>
+
+
+                <div class="mb-12" data-aos="fade-up" data-aos-delay="300">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 px-4 md:px-0">
+
+                        <!-- Nuestros Valores -->
+                        <div>
+                            <h3 class="text-xl lg:text-2xl font-semibold mb-4 text-diseiBlue">Nuestros Valores</h3>
+
+                            <ul class="space-y-2 text-base text-gray-700">
+                                <li class="flex items-start"><svg
+                                        class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0" fill="currentColor"
+                                        viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>Integridad</li>
+                                <li class="flex items-start"><svg
+                                        class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0" fill="currentColor"
+                                        viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>Comportarse como dueños</li>
+                                <li class="flex items-start"><svg
+                                        class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0" fill="currentColor"
+                                        viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>Respeto y comunicación abierta</li>
+                                <li class="flex items-start"><svg
+                                        class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0" fill="currentColor"
+                                        viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>Responsabilidad y compromiso</li>
+                                <li class="flex items-start"><svg
+                                        class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0" fill="currentColor"
+                                        viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>Ser miembro del equipo</li>
+                                <li class="flex items-start"><svg
+                                        class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0" fill="currentColor"
+                                        viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>Actuar con sentido de urgencia</li>
+                                <li class="flex items-start"><svg
+                                        class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0" fill="currentColor"
+                                        viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>Mejorar continuamente</li>
+                                <li class="flex items-start"><svg
+                                        class="w-5 h-5 text-diseilightBlue mr-3 mt-1 flex-shrink-0" fill="currentColor"
+                                        viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>Entregar resultados</li>
+                            </ul>
+                        </div>
+
+                        <!-- Nuestros Principios -->
+                        <div>
+                            <h3 class="text-xl lg:text-2xl font-semibold mb-4 text-diseiBlue">Nuestros Principios</h3>
+                            <ul class="space-y-1 text-sm text-gray-600">
+                                <li class="flex items-start"><svg class="w-4 h-4 text-diseiBlue mr-2 mt-1 flex-shrink-0"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" />
+                                    </svg>Cero tolerancia a la corrupción</li>
+                                <li class="flex items-start"><svg class="w-4 h-4 text-diseiBlue mr-2 mt-1 flex-shrink-0"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" />
+                                    </svg>Comunicación de conflictos de interés</li>
+                                <li class="flex items-start"><svg class="w-4 h-4 text-diseiBlue mr-2 mt-1 flex-shrink-0"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" />
+                                    </svg>Responsabilidad personal</li>
+                                <li class="flex items-start"><svg class="w-4 h-4 text-diseiBlue mr-2 mt-1 flex-shrink-0"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" />
+                                    </svg>Transparencia en cuanto a regalos y/o donaciones</li>
+                                <li class="flex items-start"><svg class="w-4 h-4 text-diseiBlue mr-2 mt-1 flex-shrink-0"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" />
+                                    </svg>Prioridad de la seguridad en el trabajo</li>
+                                <li class="flex items-start"><svg class="w-4 h-4 text-diseiBlue mr-2 mt-1 flex-shrink-0"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" />
+                                    </svg>Respeto en las relaciones interpersonales</li>
+                                <li class="flex items-start"><svg class="w-4 h-4 text-diseiBlue mr-2 mt-1 flex-shrink-0"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" />
+                                    </svg>No Alcohol y Drogas</li>
+                                <li class="flex items-start"><svg class="w-4 h-4 text-diseiBlue mr-2 mt-1 flex-shrink-0"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" />
+                                    </svg>Responsabilidad en el Uso y Protección de los Activos</li>
+                                <li class="flex items-start"><svg class="w-4 h-4 text-diseiBlue mr-2 mt-1 flex-shrink-0"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" />
+                                    </svg>Confidencialidad</li>
+                                <li class="flex items-start"><svg class="w-4 h-4 text-diseiBlue mr-2 mt-1 flex-shrink-0"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" />
+                                    </svg>Responsabilidad en el Uso de los sistemas informáticos</li>
+                                <li class="flex items-start"><svg class="w-4 h-4 text-diseiBlue mr-2 mt-1 flex-shrink-0"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" />
+                                    </svg>Cumplimiento de la legislación aplicable</li>
+                                <li class="flex items-start"><svg class="w-4 h-4 text-diseiBlue mr-2 mt-1 flex-shrink-0"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" />
+                                    </svg>Sanciones ante el incumplimiento de este código</li>
+                                <li class="flex items-start"><svg class="w-4 h-4 text-diseiBlue mr-2 mt-1 flex-shrink-0"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" />
+                                    </svg>Redacción clara y honesta con Proveedores y Clientes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12" data-aos="zoom-in" data-aos-delay="300">
+                <a href="contacto.html"
+                    class="bg-diseiBlue text-white px-6 py-3 rounded-lg hover:bg-diseilightBlue transition duration-300 transform hover:scale-105 text-base font-semibold">
+                    Conoce Nuestro Equipo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-diseiBlue py-8 mt-12">
+        <div
+            class="container mx-auto px-6 sm:px-12 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6 text-white text-sm">
+            <div><img src="img/logos/disei-logo-white.png" alt="DISEI Logo" class="h-10 mx-auto md:mx-0 mb-4 md:mb-0">
+            </div>
+            <div class="flex-grow md:pl-6">
+                <p>Corrientes 1060 Este, Capital, San Juan, Argentina</p>
+                <p>Tel: +54 264 570-5969 | Email: info@disei.com.ar</p>
+            </div>
+            <div class="mt-4 md:mt-0">
+                © DISEI. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50,
+            });
+        });
+    </script>
+</body>
+
+</html>

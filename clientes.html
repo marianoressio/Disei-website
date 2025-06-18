@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DISEI - Clientes</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        diseiBlue: '#323B82',
+                        diseilightBlue: '#75C1E3',
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    },
+                    animation: {
+                        'scroll-left': 'scrollLeft 30s linear infinite',
+                        'scroll-right': 'scrollRight 45s linear infinite',
+                    },
+                    keyframes: {
+                        scrollLeft: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        scrollRight: {
+                            '0%': { transform: 'translateX(-50%)' },
+                            '100%': { transform: 'translateX(0)' },
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        .logo-track {
+            display: flex;
+            width: max-content;
+        }
+
+        .logo-carousel img {
+            height: 55px;
+            margin: 0 2rem;
+            object-fit: contain;
+        }
+
+        /* Aplicar a enlaces, botones y otros elementos interactivos */
+        a,
+        button,
+        .hover-effect-target {
+            transition: all 0.4s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-white font-montserrat text-gray-800">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full bg-white shadow-lg z-50">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex-shrink-0">
+                <img src="img/logos/disei-logo.png" alt="DISEI Logo" class="h-12">
+            </div>
+            <button id="menu-btn" class="text-diseiBlue md:hidden focus:outline-none text-3xl">☰</button>
+            <ul id="menu" class="hidden md:flex space-x-6 text-gray-800 font-normal uppercase">
+                <li><a href="inicio.html" class="hover:text-diseiBlue">Inicio</a></li>
+                <li><a href="nosotros.html" class="hover:text-diseiBlue">Nosotros</a></li>
+                <li><a href="servicios.html" class="hover:text-diseiBlue">Servicios</a></li>
+                <li><a href="clientes.html" class="hover:text-diseiBlue">Clientes</a></li>
+                <li><a href="proyectos.html" class="hover:text-diseiBlue">Proyectos</a></li>
+                <li><a href="contacto.html" class="hover:text-diseiBlue">Contacto</a></li>
+            </ul>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
+            <ul class="space-y-2 text-gray-800 font-normal uppercase">
+                <li><a href="inicio.html" class="block hover:text-diseiBlue">Inicio</a></li>
+                <li><a href="nosotros.html" class="block hover:text-diseiBlue">Nosotros</a></li>
+                <li><a href="servicios.html" class="block hover:text-diseiBlue">Servicios</a></li>
+                <li><a href="clientes.html" class="block hover:text-diseiBlue">Clientes</a></li>
+                <li><a href="proyectos.html" class="block hover:text-diseiBlue">Proyectos</a></li>
+                <li><a href="contacto.html" class="block hover:text-diseiBlue">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <!-- Banner -->
+        <section class="bg-white pt-32 pb-16 text-diseiBlue text-center relative overflow-hidden">
+            <h1 class="text-4xl font-bold tracking-wider relative z-10" data-aos="fade-down">Nuestros Clientes</h1>
+        </section>
+
+        <!-- Carrusel 1 -->
+        <section class="overflow-hidden py-12 pt-18" data-aos="fade-up">
+            <div class="logo-carousel animate-scroll-left logo-track">
+                <div class="flex">
+                    <img src="logos/cliente1.png" alt="Cliente 1" />
+                    <img src="logos/cliente2.png" alt="Cliente 2" />
+                    <img src="logos/cliente3.png" alt="Cliente 3" />
+                    <img src="logos/cliente4.png" alt="Cliente 4" />
+                    <img src="logos/cliente5.png" alt="Cliente 5" />
+                    <img src="logos/cliente6.png" alt="Cliente 6" />
+                    <img src="logos/cliente7.png" alt="Cliente 7" />
+                    <img src="logos/cliente1.png" alt="Cliente 1" />
+                    <img src="logos/cliente2.png" alt="Cliente 2" />
+                    <img src="logos/cliente3.png" alt="Cliente 3" />
+                    <img src="logos/cliente4.png" alt="Cliente 4" />
+                    <img src="logos/cliente5.png" alt="Cliente 5" />
+                    <img src="logos/cliente6.png" alt="Cliente 6" />
+                    <img src="logos/cliente7.png" alt="Cliente 7" />
+                    <img src="logos/cliente1.png" alt="Cliente 1" />
+                    <img src="logos/cliente2.png" alt="Cliente 2" />
+                    <img src="logos/cliente3.png" alt="Cliente 3" />
+                    <img src="logos/cliente4.png" alt="Cliente 4" />
+                    <img src="logos/cliente5.png" alt="Cliente 5" />
+                    <img src="logos/cliente6.png" alt="Cliente 6" />
+                    <img src="logos/cliente7.png" alt="Cliente 7" />
+                    <img src="logos/cliente1.png" alt="Cliente 1" />
+                    <img src="logos/cliente2.png" alt="Cliente 2" />
+                    <img src="logos/cliente3.png" alt="Cliente 3" />
+                    <img src="logos/cliente4.png" alt="Cliente 4" />
+                    <img src="logos/cliente5.png" alt="Cliente 5" />
+                    <img src="logos/cliente6.png" alt="Cliente 6" />
+                    <img src="logos/cliente7.png" alt="Cliente 7" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Carrusel 2 -->
+        <section class="overflow-hidden py-24" data-aos="fade-up" data-aos-delay="200">
+            <div class="logo-carousel animate-scroll-right logo-track">
+                <div class="flex">
+                    <img src="logos/cliente8.png" alt="Cliente 8" />
+                    <img src="logos/cliente9.png" alt="Cliente 9" />
+                    <img src="logos/cliente10.png" alt="Cliente 10" />
+                    <img src="logos/cliente11.png" alt="Cliente 11" />
+                    <img src="logos/cliente12.png" alt="Cliente 12" />
+                    <img src="logos/cliente13.png" alt="Cliente 13" />
+                    <img src="logos/cliente14.png" alt="Cliente 14" />
+                    <img src="logos/cliente15.png" alt="Cliente 15" />
+                    <img src="logos/cliente8.png" alt="Cliente 8" />
+                    <img src="logos/cliente9.png" alt="Cliente 9" />
+                    <img src="logos/cliente10.png" alt="Cliente 10" />
+                    <img src="logos/cliente11.png" alt="Cliente 11" />
+                    <img src="logos/cliente12.png" alt="Cliente 12" />
+                    <img src="logos/cliente13.png" alt="Cliente 13" />
+                    <img src="logos/cliente14.png" alt="Cliente 14" />
+                    <img src="logos/cliente15.png" alt="Cliente 15" />
+                    <img src="logos/cliente8.png" alt="Cliente 8" />
+                    <img src="logos/cliente9.png" alt="Cliente 9" />
+                    <img src="logos/cliente10.png" alt="Cliente 10" />
+                    <img src="logos/cliente11.png" alt="Cliente 11" />
+                    <img src="logos/cliente12.png" alt="Cliente 12" />
+                    <img src="logos/cliente13.png" alt="Cliente 13" />
+                    <img src="logos/cliente14.png" alt="Cliente 14" />
+                    <img src="logos/cliente15.png" alt="Cliente 15" />
+                    <img src="logos/cliente8.png" alt="Cliente 8" />
+                    <img src="logos/cliente9.png" alt="Cliente 9" />
+                    <img src="logos/cliente10.png" alt="Cliente 10" />
+                    <img src="logos/cliente11.png" alt="Cliente 11" />
+                    <img src="logos/cliente12.png" alt="Cliente 12" />
+                    <img src="logos/cliente13.png" alt="Cliente 13" />
+                    <img src="logos/cliente14.png" alt="Cliente 14" />
+                    <img src="logos/cliente15.png" alt="Cliente 15" />
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-diseiBlue py-8 mt-12">
+        <div
+            class="container mx-auto px-6 sm:px-12 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6 text-white text-sm">
+            <div><img src="img/logos/disei-logo-white.png" alt="DISEI Logo" class="h-10 mx-auto md:mx-0 mb-4 md:mb-0"></div>
+            <div class="flex-grow md:pl-6">
+                <p>Corrientes 1060 Este, Capital, San Juan, Argentina</p>
+                <p>Tel: +54 264 570-5969 | Email: info@disei.com.ar</p>
+            </div>
+            <div class="mt-4 md:mt-0">
+                © DISEI. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
