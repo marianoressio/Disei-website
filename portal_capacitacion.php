@@ -76,7 +76,7 @@ $nombreEmpleado = isset($_SESSION["capacitacion_nombre"]) ? htmlspecialchars($_S
             <div><img src="img/logos/disei-logo-white.png" alt="DISEI Logo" class="h-10 mx-auto md:mx-0 mb-4 md:mb-0"></div>
             <div class="flex-grow md:pl-6">
                 <p>Corrientes 1060 Este, Capital, San Juan, Argentina</p>
-                <p>Tel: +54 264 570-5969 | Email: info@disei.com.ar</p>
+                <p>Tel: +54 264 570-5969 | Email: disei@disei.com.ar</p>
             </div>
             <div class="mt-4 md:mt-0">
                 © <?php echo date("Y"); ?> DISEI. Todos los derechos reservados.
