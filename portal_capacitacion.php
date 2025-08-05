@@ -35,7 +35,7 @@ $nombreEmpleado = isset($_SESSION["capacitacion_nombre"]) ? htmlspecialchars($_S
     </style>
 </head>
 
-<body class="bg-gray-100 font-montserrat text-gray-800 flex flex-col min-h-screen">
+<body class="bg-gray-100 font-montserrat text-gray-800 flex flex-col min-h-screen flex flex-col min-h-screen">
 
     <nav class="w-full bg-white shadow-lg z-50">
         <div class="container mx-auto px-6 py-4 flex items-center justify-between">
@@ -50,7 +50,7 @@ $nombreEmpleado = isset($_SESSION["capacitacion_nombre"]) ? htmlspecialchars($_S
         </div>
     </nav>
 
-    <main class="flex-grow container mx-auto px-6 py-12">
+    <main class="flex-grow container mx-auto px-6 py-12 flex-1">
         <h1 class="text-4xl font-bold text-diseiBlue mb-8 text-center">Portal de Capacitación</h1>
 
         <div class="bg-white p-8 rounded-lg shadow-xl max-w-2xl mx-auto">

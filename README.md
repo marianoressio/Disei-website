@@ -2,29 +2,34 @@
 
 ## Descripción del Proyecto
 
-Este repositorio contiene el código fuente del sitio web corporativo desarrollado para **DISEI**, una empresa especializada en la prestación de servicios eléctricos e industriales. El objetivo principal del sitio es presentar la empresa, sus servicios, trayectoria, proyectos destacados y facilitar el contacto, además de proveer un portal interno para la capacitación de sus empleados.
+Este repositorio contiene el código fuente del sitio web corporativo desarrollado para **DISEI**, una empresa especializada en la prestación de servicios eléctricos e industriales. El objetivo principal del sitio es presentar la empresa, sus servicios, trayectoria, proyectos destacados y facilitar el contacto, además de proveer un portal interno para la capacitación de sus empleados y un panel para la gestión de denuncias.
 
 El sitio web está diseñado para ser informativo, profesional y fácil de navegar, con un diseño moderno y responsivo.
 
 ## Características Principales
 
-- **Diseño Responsivo:** Adaptable a diferentes tamaños de pantalla (escritorio, tablets, móviles).
-- **Navegación Intuitiva:** Menú principal y menú móvil para fácil acceso a todas las secciones.
-- **Secciones Informativas:**
-  - **Inicio:** Presentación general con carrusel de imágenes de proyectos y listado de servicios.
-  - **Nosotros:** Información detallada sobre la empresa, incluyendo su historia (línea de tiempo), misión, visión, política integrada, código de conducta, valores y principios.
-  - **Servicios:** Listado de los servicios ofrecidos, cada uno con una ventana modal que proporciona detalles adicionales, texto descriptivo y una imagen.
-  - **Clientes:** Carruseles animados mostrando los logos de los principales clientes de la empresa.
-  - **Proyectos:** Galería de proyectos destacados, cada uno con una ventana modal que incluye un carrusel de 5 imágenes y descripción detallada.
-  - **Contacto:** Información de contacto, enlace a Google Maps, formulario para envío de CV (enlace a Google Forms) y un portal de acceso restringido para capacitaciones de empleados.
-- **Portal de Capacitación para Empleados:**
-  - Acceso restringido mediante contraseña.
-  - Autenticación manejada con PHP y MySQL.
-  - Hashing de contraseñas para seguridad.
-  - Manejo de sesiones PHP.
-  - Página protegida para mostrar materiales de capacitación (PDFs, imágenes).
-- **Animaciones Sutiles:** Uso de AOS (Animate On Scroll) para mejorar la experiencia visual al desplazarse por las páginas.
-- **Favicon:** Icono personalizado para el sitio.
+- **Diseño Responsivo:** Adaptable a diferentes tamaños de pantalla.
+- **Navegación Intuitiva:** Menú de navegación completo y funcional en vistas de escritorio y móvil.
+- **Secciones Informativas Detalladas:**
+  - **Inicio:** Presentación general con carrusel de imágenes y listado de servicios.
+  - **Nosotros:** Información completa sobre la empresa, incluyendo su historia a través de una **línea de tiempo animada**, misión, visión, política integrada, código de conducta, valores y principios.
+  - **Servicios:** Catálogo de servicios con **ventanas modales interactivas** que proporcionan detalles, texto descriptivo y una imagen para cada servicio.
+  - **Clientes:** Carruseles animados mostrando los logos de los principales clientes.
+  - **Proyectos:** Galería de proyectos destacados, cada uno con un **modal que incluye un carrusel de 5 imágenes** y descripción detallada.
+  - **Integridad y Canal de Denuncias:** Página dedicada con información sobre la política de integridad de la empresa y los diferentes canales para realizar denuncias (portal web, correo, teléfono).
+  - **Contacto:** Información de contacto y acceso al portal interno.
+- **Portal Interno con Doble Rol (PHP/MySQL):**
+  - **Portal de Capacitación para Empleados:** Acceso restringido por usuario y contraseña. Muestra materiales de capacitación (PDFs, imágenes) una vez autenticado.
+  - **Panel de Administración de Denuncias:** Acceso restringido para administradores. Permite visualizar todas las denuncias recibidas en una tabla, ver los detalles completos de cada una en un modal, y **actualizar el estado de gestión** de cada denuncia ("Recibida", "En Revisión", "Resuelta").
+- **Portal de Denuncias Anónimas (Público):**
+  - Formulario público y seguro para que cualquier persona pueda enviar una denuncia de forma anónima o proporcionando contacto opcional.
+  - Clasificación de denuncias por tipo a través de un menú desplegable.
+  - Almacenamiento seguro en la base de datos.
+- **Seguridad:**
+  - Uso de declaraciones preparadas de PHP para prevenir inyección SQL.
+  - Hashing de contraseñas con `password_hash()` y verificación con `password_verify()`.
+  - Manejo seguro de sesiones PHP.
+- **Animaciones Sutiles:** Uso de AOS (Animate On Scroll) para mejorar la experiencia visual.
 
 ## Tecnologías Utilizadas
 
@@ -34,89 +39,68 @@ El sitio web está diseñado para ser informativo, profesional y fácil de naveg
 - **CSS3:**
   - **Tailwind CSS:** Framework CSS utility-first para un desarrollo rápido y responsivo.
   - Estilos personalizados para elementos específicos (modales, línea de tiempo, etc.).
-- **JavaScript (Vanilla JS):**
-  - Manipulación del DOM para interactividad (menú móvil, carruseles, modales).
-  - Integración con AOS.js.
+- **JavaScript (Vanilla JS):** Manipulación del DOM para toda la interactividad.
 - **AOS.js:** Librería para animaciones al hacer scroll.
-- **Google Fonts:** Para la tipografía (Montserrat).
 
-### Backend (Portal de Capacitación):
+### Backend (Portal Interno y Denuncias):
 
-- **PHP:** Lenguaje de scripting del lado del servidor para la lógica de autenticación y manejo de sesiones.
-- **MySQL (MariaDB):** Sistema de gestión de bases de datos para almacenar las credenciales de los usuarios del portal de capacitación.
+- **PHP:** Lenguaje de scripting del lado del servidor para toda la lógica de negocio.
+- **MySQL (MariaDB):** Sistema de gestión de bases de datos.
 
 ### Herramientas de Desarrollo:
 
 - **XAMPP:** Entorno de desarrollo local (Apache, MySQL, PHP).
 - **Visual Studio Code:** Editor de código.
-- **Git y GitHub:** Control de versiones y alojamiento del repositorio.
+- **Git y GitHub:** Control de versiones.
 
 ## Estructura del Proyecto
 
 disei_web/
-├── contacto.html
+├── index.html (antes inicio.html)
+├── nosotros.html, servicios.html, clientes.html, proyectos.html, contacto.html
+├── integridad.html # Página de Integridad
+├── denuncias.php # Formulario público de denuncias
+├── procesar_denuncia.php # Script que guarda las denuncias
+├── panel_denuncias.php # Panel de administración de denuncias
+├── actualizar_estado_denuncia.php # Script que actualiza el estado de una denuncia
+├── portal_capacitacion.php # Portal de empleados
+├── login_capacitacion.php # Lógica de login para ambos roles
+├── logout_capacitacion.php # Lógica de logout
 ├── db_config.php # Configuración de la base de datos (con placeholders)
-├── index.html
-├── login_capacitacion.php # Lógica de login para el portal
-├── logout_capacitacion.php # Lógica de logout para el portal
-├── nosotros.html
-├── portal_capacitacion.php # Página protegida de capacitación
-├── proyectos.html
-├── servicios.html
-├── clientes.html
-├── script.js # Scripts JS generales (menú móvil, carrusel inicio)
-├── favicon.png # Favicon del sitio
-├── README.md # Este archivo
-├── img/ # Carpeta para imágenes generales y de páginas
-│ ├── disei-logo.png
-│ ├── edificio-disei.jpg
-│ ├── proyecto1.jpg
-│ └── ...
-├── logos/ # Carpeta para logos de clientes
-│ ├── cliente1.png
-│ └── ...
+├── script.js
+├── favicon.ico
+├── README.md
+├── img/, logos/, documentos/ # Carpetas de Assets
 
-## Configuración y Puesta en Marcha Local (Ejemplo con XAMPP)
+## Configuración y Puesta en Marcha Local
 
-1.  **Clonar el repositorio (o descargar el ZIP y extraer).**
-2.  **Configurar XAMPP:**
-    - Asegurarse de que los servicios de Apache y MySQL estén corriendo.
-    - Colocar la carpeta del proyecto (ej. `disei_web`) dentro del directorio `htdocs` de XAMPP.
-3.  **Base de Datos:**
-    - Acceder a phpMyAdmin (`http://localhost/phpmyadmin/`).
-    - Crear una nueva base de datos (ej. `disei_db`).
-    - Importar o ejecutar el siguiente script SQL para crear la tabla `usuarios_capacitacion`:
+1.  **Configurar XAMPP:** Iniciar Apache y MySQL. Colocar la carpeta del proyecto en `htdocs`.
+2.  **Base de Datos:**
+    - Crear una base de datos en phpMyAdmin (ej. `disei_db`).
+    - Ejecutar los siguientes scripts SQL para crear las tablas:
     ```sql
+    -- Tabla para usuarios del portal interno
     CREATE TABLE usuarios_capacitacion (
         id INT AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(50) NOT NULL UNIQUE,
         password_hash VARCHAR(255) NOT NULL,
         nombre_completo VARCHAR(100)
     );
+    -- Tabla para las denuncias
+    CREATE TABLE denuncias (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        tipo_denuncia VARCHAR(255) NOT NULL,
+        denuncia_texto TEXT NOT NULL,
+        contacto_opcional VARCHAR(255) DEFAULT NULL,
+        fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        estado ENUM('recibida', 'en_revision', 'resuelta') NOT NULL DEFAULT 'recibida'
+    );
     ```
-    - Insertar un usuario de prueba. Ejemplo (reemplazar el hash con uno generado para la contraseña deseada):
-    ```sql
-    INSERT INTO usuarios_capacitacion (username, password_hash, nombre_completo)
-    VALUES ('empleado_disei', 'HASH_GENERADO_AQUI', 'Portal de Capacitación');
-    ```
-    (Para generar el hash, se puede usar un script PHP temporal con `password_hash('tu_contraseña', PASSWORD_DEFAULT);`)
-4.  **Configurar `db_config.php`:**
-    - Copiar `db_config.php.example` a `db_config.php` (si se usa una plantilla) o editar `db_config.php`.
-    - Actualizar los placeholders con las credenciales de la base de datos local (ej. `DB_USERNAME = 'root'`, `DB_PASSWORD = ''`, `DB_NAME = 'disei_db'`).
-5.  **Acceder al Sitio:**
-    - Abrir en el navegador: `http://localhost/disei_web/index.html` (o el nombre de tu carpeta).
-
-## Posibles Mejoras Futuras
-
-- Implementar un sistema de gestión de contenido (CMS) para facilitar la actualización de textos e imágenes.
-- Optimización avanzada de imágenes y carga diferida (lazy loading) para mejorar el rendimiento.
-- Pruebas unitarias y de integración.
-- Internacionalización (i18n) si se requiere soporte para múltiples idiomas.
-- Mejorar la seguridad del portal de capacitación con medidas adicionales (ej. CSRF tokens, límite de intentos de login).
+    - Insertar los usuarios de prueba (empleado y admin) generando sus respectivos hashes con `password_hash()`.
+3.  **Configurar `db_config.php`:** Actualizar con las credenciales de la base de datos local.
+4.  **Acceder al Sitio:** Abrir `http://localhost/nombre_carpeta_proyecto/index.html`.
 
 ## Autor
 
 - **Mariano Ressio Barea**
-- marianoressio@gmail.com
-
----
+- https://www.linkedin.com/in/mariano-ressio

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DISEI - Integridad y Canal de Denuncias</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              diseiBlue: "#323B82",
+              diseilightBlue: "#75C1E3",
+            },
+            fontFamily: {
+              montserrat: ["Montserrat", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-white font-montserrat text-gray-800">
+    <nav class="fixed top-0 w-full bg-white shadow-lg z-50">
+      <div
+        class="container mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <div class="flex-shrink-0">
+          <img src="img/logos/disei-logo.png" alt="DISEI Logo" class="h-12" />
+        </div>
+        <button
+          id="menu-btn"
+          class="text-diseiBlue md:hidden focus:outline-none text-3xl"
+        >
+          ☰
+        </button>
+        <ul
+          id="menu"
+          class="hidden md:flex space-x-6 text-gray-800 font-normal uppercase"
+        >
+          <li><a href="index.html" class="hover:text-diseiBlue">Inicio</a></li>
+          <li>
+            <a href="nosotros.html" class="hover:text-diseiBlue">Nosotros</a>
+          </li>
+          <li>
+            <a href="servicios.html" class="hover:text-diseiBlue">Servicios</a>
+          </li>
+          <li>
+            <a href="clientes.html" class="hover:text-diseiBlue">Clientes</a>
+          </li>
+          <li>
+            <a href="proyectos.html" class="hover:text-diseiBlue">Proyectos</a>
+          </li>
+          <li>
+            <a href="integridad.html" class="hover:text-diseiBlue"
+              >Integridad</a
+            >
+          </li>
+          <li>
+            <a href="contacto.html" class="hover:text-diseiBlue">Contacto</a>
+          </li>
+        </ul>
+      </div>
+      <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
+        <ul class="space-y-2 text-gray-800 font-normal uppercase">
+          <li>
+            <a href="index.html" class="block hover:text-diseiBlue">Inicio</a>
+          </li>
+          <li>
+            <a href="nosotros.html" class="block hover:text-diseiBlue"
+              >Nosotros</a
+            >
+          </li>
+          <li>
+            <a href="servicios.html" class="block hover:text-diseiBlue"
+              >Servicios</a
+            >
+          </li>
+          <li>
+            <a href="clientes.html" class="block hover:text-diseiBlue"
+              >Clientes</a
+            >
+          </li>
+          <li>
+            <a href="proyectos.html" class="block hover:text-diseiBlue"
+              >Proyectos</a
+            >
+          </li>
+          <li>
+            <a href="integridad.html" class="block hover:text-diseiBlue"
+              >Integridad</a
+            >
+          </li>
+          <li>
+            <a href="contacto.html" class="block hover:text-diseiBlue"
+              >Contacto</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <!-- Sección Superior: Conducta y Canales de Denuncia -->
+      <section class="bg-gray-50 pt-32 pb-16">
+        <div class="container mx-auto px-6 text-center">
+          <div class="inline-block" data-aos="zoom-in">
+            <svg
+              class="w-16 h-16 mx-auto text-diseiBlue"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"
+              />
+            </svg>
+          </div>
+          <h1
+            class="text-4xl font-bold text-diseiBlue mt-4 mb-6"
+            data-aos="fade-up"
+          >
+            Conducta e Integridad
+          </h1>
+          <p
+            class="max-w-3xl mx-auto text-lg text-gray-700 leading-relaxed text-justify"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            En DISEI estamos comprometidos con la integridad y la transparencia
+            en todas nuestras acciones. Para ello, contamos con canales de
+            comunicación anónimos y confidenciales que permiten realizar
+            denuncias de hechos o circunstancias irregulares o contrarias a los
+            valores de la compañía. Este espacio se encuentra disponible para
+            colaboradores, proveedores, clientes y la comunidad en general.
+          </p>
+        </div>
+
+        <div class="container mx-auto px-6 mt-16">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <!-- Tarjeta Sitio Web -->
+            <div
+              class="p-8 border border-gray-200 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <svg
+                class="w-24 h-24 mx-auto mb-4 text-diseilightBlue"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
+                />
+              </svg>
+
+              <h3 class="text-xl font-semibold text-diseiBlue mb-2">
+                PORTAL DE DENUNCIAS
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Envía tu denuncia de forma segura y anónima a través de nuestro
+                portal.
+              </p>
+              <a
+                href="denuncias.php"
+                class="inline-block bg-diseiBlue text-white font-semibold py-2 px-5 rounded-lg hover:bg-diseilightBlue transition-all"
+              >
+                Acceder al Portal
+              </a>
+            </div>
+            <!-- Tarjeta Correo Electrónico -->
+            <div
+              class="p-8 border border-gray-200 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <svg
+                class="w-24 h-24 mx-auto mb-4 text-diseilightBlue"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                />
+              </svg>
+              <h3 class="text-xl font-semibold text-diseiBlue mb-2">
+                CORREO ELECTRÓNICO
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Envíanos un correo a la siguiente dirección:
+              </p>
+              <a
+                href="mailto:integridad@disei.com.ar"
+                class="font-semibold text-diseiBlue hover:text-diseilightBlue break-all"
+              >
+                denuncias@disei.com.ar
+              </a>
+            </div>
+            <!-- Tarjeta Teléfono -->
+            <div
+              class="p-8 border border-gray-200 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <svg
+                class="w-24 h-24 mx-auto mb-4 text-diseilightBlue"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"
+                />
+              </svg>
+              <h3 class="text-xl font-semibold text-diseiBlue mb-2">
+                TELÉFONO
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Tu denuncia es importante. Llámanos al:
+              </p>
+              <span class="font-semibold text-diseiBlue text-lg">
+                +54 264 570-5969
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección Inferior: Código de Conducta -->
+      <section class="relative py-16 bg-cover bg-center">
+        <div class="absolute inset-0 bg-diseiBlue"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+          <div class="inline-block" data-aos="zoom-in">
+            <svg
+              class="w-16 h-16 mx-auto text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+              />
+            </svg>
+          </div>
+          <h2
+            class="text-4xl font-bold text-white mt-4 mb-6"
+            data-aos="fade-up"
+          >
+            Código de Conducta
+          </h2>
+          <p
+            class="max-w-3xl mx-auto text-lg text-gray-200 leading-relaxed text-justify mb-10"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            Nuestro Código de Conducta establece los principios que regulan las
+            relaciones entre los miembros de nuestra organización, asegurando un
+            ambiente ético y profesional. Descarga los documentos para conocer
+            nuestras pautas para empleados, proveedores y clientes.
+          </p>
+
+          <div class="flex flex-wrap justify-center gap-4">
+            <a
+              href="documentos/codigo_conducta_general.pdf"
+              target="_blank"
+              class="inline-flex items-center justify-center bg-gray-700 text-white font-semibold py-3 px-6 rounded-lg hover:bg-white hover:text-gray-800 transform hover:scale-105 transition-all duration-300 shadow-md"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6 mr-2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 9.75v6.75m0 0-3-3m3 3 3-3m-8.25 6a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"
+                />
+              </svg>
+              Código de Conducta
+            </a>
+            <a
+              href="documentos/codigo_conducta_proveedores.pdf"
+              target="_blank"
+              class="inline-flex items-center justify-center bg-gray-700 text-white font-semibold py-3 px-6 rounded-lg hover:bg-white hover:text-gray-800 transform hover:scale-105 transition-all duration-300 shadow-md"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6 mr-2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 9.75v6.75m0 0-3-3m3 3 3-3m-8.25 6a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"
+                />
+              </svg>
+              Código para Proveedores
+            </a>
+            <a
+              href="documentos/codigo_conducta_clientes.pdf"
+              target="_blank"
+              class="inline-flex items-center justify-center bg-gray-700 text-white font-semibold py-3 px-6 rounded-lg hover:bg-white hover:text-gray-800 transform hover:scale-105 transition-all duration-300 shadow-md"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6 mr-2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 9.75v6.75m0 0-3-3m3 3 3-3m-8.25 6a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"
+                />
+              </svg>
+              Código para Clientes
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (Pega tu footer aquí) -->
+    <footer class="bg-diseiBlue py-8 mt-12">
+      <div
+        class="container mx-auto px-6 sm:px-12 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6 text-white text-sm"
+      >
+        <div>
+          <img
+            src="img/logos/disei-logo-white.png"
+            alt="DISEI Logo"
+            class="h-10 mx-auto md:mx-0 mb-4 md:mb-0"
+          />
+        </div>
+        <div class="flex-grow md:pl-6">
+          <p>Corrientes 1060 Este, Capital, San Juan, Argentina</p>
+          <p>Tel: +54 264 570-5969 | Email: disei@disei.com.ar</p>
+        </div>
+        <div class="mt-4 md:mt-0">© DISEI. Todos los derechos reservados.</div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          once: true,
+          offset: 50,
+        });
+      });
+    </script>
+  </body>
+</html>

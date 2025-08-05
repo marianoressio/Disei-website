@@ -1,270 +1,527 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DISEI - Inicio</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        diseiBlue: '#323B82',
-                        diseilightBlue: '#75C1E3',
-
-                    },
-                    fontFamily: {
-                        montserrat: ['Montserrat', 'sans-serif'],
-                    },
-                },
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              diseiBlue: "#323B82",
+              diseilightBlue: "#75C1E3",
             },
-        };
+            fontFamily: {
+              montserrat: ["Montserrat", "sans-serif"],
+            },
+          },
+        },
+      };
     </script>
     <style>
-        /* Aplicar a enlaces, botones y otros elementos interactivos */
-        a,
-        button,
-        .hover-effect-target {
-            transition: all 0.3s ease-in-out;
-        }
+      /* Aplicar a enlaces, botones y otros elementos interactivos */
+      a,
+      button,
+      .hover-effect-target {
+        transition: all 0.3s ease-in-out;
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-white font-montserrat text-gray-800">
+  <body
+    class="bg-white font-montserrat text-gray-800 flex flex-col min-h-screen"
+  >
     <!-- Navigation Bar -->
     <nav class="fixed top-0 w-full bg-white shadow-lg z-50">
-        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-            <!-- Logo -->
-            <div class="flex-shrink-0">
-                <img src="img/logos/disei-logo.png" alt="DISEI Logo" class="h-12">
-            </div>
-
-            <!-- Botón hamburguesa (visible en móviles) -->
-            <button id="menu-btn" class="text-diseiBlue md:hidden focus:outline-none text-3xl">
-                ☰
-            </button>
-
-            <!-- Menú -->
-            <ul id="menu" class="hidden md:flex space-x-6 text-gray-800 font-normal uppercase">
-                <li><a href="index.html" class="hover:text-diseiBlue">Inicio</a></li>
-                <li><a href="nosotros.html" class="hover:text-diseiBlue">Nosotros</a></li>
-                <li><a href="servicios.html" class="hover:text-diseiBlue">Servicios</a></li>
-                <li><a href="clientes.html" class="hover:text-diseiBlue">Clientes</a></li>
-                <li><a href="proyectos.html" class="hover:text-diseiBlue">Proyectos</a></li>
-                <li><a href="contacto.html" class="hover:text-diseiBlue">Contacto</a></li>
-            </ul>
+      <div
+        class="container mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <img src="img/logos/disei-logo.png" alt="DISEI Logo" class="h-12" />
         </div>
 
-        <!-- Menú desplegable (solo visible en móviles) -->
-        <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
-            <ul class="space-y-2 text-gray-800 font-normal uppercase">
-                <li><a href="index.html" class="block hover:text-diseiBlue">Inicio</a></li>
-                <li><a href="nosotros.html" class="block hover:text-diseiBlue">Nosotros</a></li>
-                <li><a href="servicios.html" class="block hover:text-diseiBlue">Servicios</a></li>
-                <li><a href="clientes.html" class="block hover:text-diseiBlue">Clientes</a></li>
-                <li><a href="proyectos.html" class="block hover:text-diseiBlue">Proyectos</a></li>
-                <li><a href="contacto.html" class="block hover:text-diseiBlue">Contacto</a></li>
-            </ul>
-        </div>
+        <!-- Botón hamburguesa (visible en móviles) -->
+        <button
+          id="menu-btn"
+          class="text-diseiBlue md:hidden focus:outline-none text-3xl"
+        >
+          ☰
+        </button>
+
+        <!-- Menú -->
+        <ul
+          id="menu"
+          class="hidden md:flex space-x-6 text-gray-800 font-normal uppercase"
+        >
+          <li><a href="index.html" class="hover:text-diseiBlue">Inicio</a></li>
+          <li>
+            <a href="nosotros.html" class="hover:text-diseiBlue">Nosotros</a>
+          </li>
+          <li>
+            <a href="servicios.html" class="hover:text-diseiBlue">Servicios</a>
+          </li>
+          <li>
+            <a href="clientes.html" class="hover:text-diseiBlue">Clientes</a>
+          </li>
+          <li>
+            <a href="proyectos.html" class="hover:text-diseiBlue">Proyectos</a>
+          </li>
+          <li>
+            <a href="integridad.html" class="hover:text-diseiBlue"
+              >Integridad</a
+            >
+          </li>
+          <li>
+            <a href="contacto.html" class="hover:text-diseiBlue">Contacto</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Menú desplegable (solo visible en móviles) -->
+      <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
+        <ul class="space-y-2 text-gray-800 font-normal uppercase">
+          <li>
+            <a href="index.html" class="block hover:text-diseiBlue">Inicio</a>
+          </li>
+          <li>
+            <a href="nosotros.html" class="block hover:text-diseiBlue"
+              >Nosotros</a
+            >
+          </li>
+          <li>
+            <a href="servicios.html" class="block hover:text-diseiBlue"
+              >Servicios</a
+            >
+          </li>
+          <li>
+            <a href="clientes.html" class="block hover:text-diseiBlue"
+              >Clientes</a
+            >
+          </li>
+          <li>
+            <a href="proyectos.html" class="block hover:text-diseiBlue"
+              >Proyectos</a
+            >
+          </li>
+          <li>
+            <a href="integridad.html" class="block hover:text-diseiBlue"
+              >Integridad</a
+            >
+          </li>
+          <li>
+            <a href="contacto.html" class="block hover:text-diseiBlue"
+              >Contacto</a
+            >
+          </li>
+        </ul>
+      </div>
     </nav>
-
-
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-16 px-6 sm:px-12 overflow-hidden">
-
+    <main class="flex-1">
+      <!-- Hero Section -->
+      <section class="relative pt-32 pb-16 px-6 sm:px-12 overflow-hidden">
         <div class="container mx-auto relative z-10">
-
-            <div class="flex flex-col md:flex-row items-center gap-10 lg:gap-16">
-                <!-- Carousel -->
-                <div class="w-full md:w-5/12 relative h-85 sm:h-101 overflow-hidden rounded-lg shadow-xl"
-                    data-aos="fade-right" data-aos-delay="100">
-                    <div class="carousel-inner flex transition-transform duration-500 ease-in-out h-full">
-                        <div class="carousel-item min-w-full h-full">
-                            <img src="img/inicio/proyecto1.jpg" alt="Proyecto Eléctrico 1" class="w-full h-full object-cover">
-                        </div>
-                        <div class="carousel-item min-w-full h-full">
-                            <img src="img/inicio/proyecto2.jpg" alt="Proyecto Eléctrico 2" class="w-full h-full object-cover">
-                        </div>
-                        <div class="carousel-item min-w-full h-full">
-                            <img src="img/inicio/proyecto3.jpg" alt="Proyecto Eléctrico 3" class="w-full h-full object-cover">
-                        </div>
-                        <div class="carousel-item min-w-full h-full">
-                            <img src="img/inicio/proyecto4.jpg" alt="Proyecto Eléctrico 4" class="w-full h-full object-cover">
-                        </div>
-                        <div class="carousel-item min-w-full h-full">
-                            <img src="img/inicio/proyecto5.jpg" alt="Proyecto Eléctrico 5" class="w-full h-full object-cover">
-                        </div>
-                        <div class="carousel-item min-w-full h-full">
-                            <img src="img/inicio/proyecto6.jpg" alt="Proyecto Eléctrico 6" class="w-full h-full object-cover">
-                        </div>
-                        <div class="carousel-item min-w-full h-full">
-                            <img src="img/inicio/proyecto7.jpg" alt="Proyecto Eléctrico 7" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <button
-                        class="carousel-control prev absolute top-1/2 left-3 transform -translate-y-1/2 bg-diseiBlue/60 text-white p-2 rounded-full text-xl hover:bg-diseiBlue/80 focus:outline-none transition-all duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                            stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                        </svg>
-                    </button>
-                    <button
-                        class="carousel-control next absolute top-1/2 right-3 transform -translate-y-1/2 bg-diseiBlue/60 text-white p-2 rounded-full text-xl hover:bg-diseiBlue/80 focus:outline-none transition-all duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                            stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                        </svg>
-                    </button>
+          <div class="flex flex-col md:flex-row items-center gap-10 lg:gap-16">
+            <!-- Carousel -->
+            <div
+              class="w-full md:w-5/12 relative h-85 sm:h-101 overflow-hidden rounded-lg shadow-xl"
+              data-aos="fade-right"
+              data-aos-delay="100"
+            >
+              <div
+                class="carousel-inner flex transition-transform duration-500 ease-in-out h-full"
+              >
+                <div class="carousel-item min-w-full h-full">
+                  <img
+                    src="img/inicio/proyecto1.jpg"
+                    alt="Proyecto Eléctrico 1"
+                    class="w-full h-full object-cover"
+                  />
                 </div>
-
-                <!-- Texto -->
-                <div class="w-full md:w-7/12" data-aos="fade-left" data-aos-delay="200">
-                    <h1 class="text-3xl font-bold text-diseiBlue mb-6 text-left" data-aos="fade-left"
-                        data-aos-delay="300">DISEI | Servicios
-                        Eléctricos e Industriales</h1>
-                    <p class="text-base mb-6 text-justify" data-aos="fade-left" data-aos-delay="400">
-                        En DISEI contamos con más de 25 años de experiencia brindando soluciones integrales en
-                        transmisión y distribución de energía eléctrica, mantenimiento industrial, servicios mineros y
-                        obras de infraestructura.
-                    </p>
-                    <p class="text-base mb-8 text-justify" data-aos="fade-left" data-aos-delay="500">
-                        Nuestra empresa se destaca por su compromiso con la calidad, la eficiencia operativa y la
-                        innovación tecnológica en cada proyecto.
-                    </p>
-
-                    <h2 class="text-2xl font-semibold text-diseiBlue mb-4" data-aos="fade-left" data-aos-delay="600">
-                        Nuestros servicios destacados:</h2>
-                    <ul class="list-inside space-y-2 text-sm" data-aos="fade-left" data-aos-delay="700">
-                        <li data-aos="fade-right" data-aos-delay="750">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2 text-diseiBlue"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>Operación y mantenimiento de redes eléctricas
-                        </li>
-                        <li data-aos="fade-right" data-aos-delay="800">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2 text-diseiBlue"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>Construcción de líneas de alta, media y baja tensión
-                        </li>
-                        <li data-aos="fade-right" data-aos-delay="850">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2 text-diseiBlue"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>Construcción de estaciones transformadoras AT/MT
-                        </li>
-                        <li data-aos="fade-right" data-aos-delay="900">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2 text-diseiBlue"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>Construcción de subestaciones transformadoras MT/BT
-                        </li>
-                        <li data-aos="fade-right" data-aos-delay="900">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2 text-diseiBlue"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>Mantenimiento de instalaciones industriales
-                        </li>
-                        <li data-aos="fade-right" data-aos-delay="900">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2 text-diseiBlue"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>Servicios eléctricos para la industria minera
-                        </li>
-                        <li data-aos="fade-right" data-aos-delay="900">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2 text-diseiBlue"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>Generación de energía eléctrica
-                        </li>
-                        <li data-aos="fade-right" data-aos-delay="900">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2 text-diseiBlue"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>Construcción de parques solares
-                        </li>
-                        <li data-aos="fade-right" data-aos-delay="900">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2 text-diseiBlue"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>Obras civiles asociadas a proyectos eléctricos e industriales
-                        </li>
-                         <li data-aos="fade-right" data-aos-delay="900">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2 text-diseiBlue"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>Planta propia de hormigón elaborado
-                        </li>
-                         <li data-aos="fade-right" data-aos-delay="900">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2 text-diseiBlue"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>Perforaciones
-                        </li>
-                         <li data-aos="fade-right" data-aos-delay="900">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2 text-diseiBlue"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>Digitalización de redes eléctricas en AT/MT/BT
-                        </li>
-                    </ul>
-                    <div class="mt-4 text-sm" data-aos="fade-left" data-aos-delay="950">
-                        <a href="servicios.html" class="text-diseiBlue hover:underline font-semibold">Ver todos nuestros
-                            servicios →</a>
-                    </div>
-                    <div class="text-center md:text-center mt-10" data-aos="zoom-in" data-aos-delay="1000">
-                        <a href="contacto.html"
-                            class="bg-diseiBlue text-white px-8 py-3 rounded-lg hover:bg-blue-900 transition duration-300 transform hover:scale-105 text-base font-semibold shadow-lg">Contáctanos
-                            Hoy</a>
-                    </div>
+                <div class="carousel-item min-w-full h-full">
+                  <img
+                    src="img/inicio/proyecto2.jpg"
+                    alt="Proyecto Eléctrico 2"
+                    class="w-full h-full object-cover"
+                  />
                 </div>
+                <div class="carousel-item min-w-full h-full">
+                  <img
+                    src="img/inicio/proyecto3.jpg"
+                    alt="Proyecto Eléctrico 3"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="carousel-item min-w-full h-full">
+                  <img
+                    src="img/inicio/proyecto4.jpg"
+                    alt="Proyecto Eléctrico 4"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="carousel-item min-w-full h-full">
+                  <img
+                    src="img/inicio/proyecto5.jpg"
+                    alt="Proyecto Eléctrico 5"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="carousel-item min-w-full h-full">
+                  <img
+                    src="img/inicio/proyecto6.jpg"
+                    alt="Proyecto Eléctrico 6"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="carousel-item min-w-full h-full">
+                  <img
+                    src="img/inicio/proyecto7.jpg"
+                    alt="Proyecto Eléctrico 7"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control prev absolute top-1/2 left-3 transform -translate-y-1/2 bg-diseiBlue/60 text-white p-2 rounded-full text-xl hover:bg-diseiBlue/80 focus:outline-none transition-all duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
+              </button>
+              <button
+                class="carousel-control next absolute top-1/2 right-3 transform -translate-y-1/2 bg-diseiBlue/60 text-white p-2 rounded-full text-xl hover:bg-diseiBlue/80 focus:outline-none transition-all duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                  />
+                </svg>
+              </button>
             </div>
-        </div>
-    </section>
 
+            <!-- Texto -->
+            <div
+              class="w-full md:w-7/12"
+              data-aos="fade-left"
+              data-aos-delay="200"
+            >
+              <h1
+                class="text-3xl font-bold text-diseiBlue mb-6 text-left"
+                data-aos="fade-left"
+                data-aos-delay="300"
+              >
+                DISEI | Servicios Eléctricos e Industriales
+              </h1>
+              <p
+                class="text-base mb-6 text-justify"
+                data-aos="fade-left"
+                data-aos-delay="400"
+              >
+                En DISEI contamos con más de 25 años de experiencia brindando
+                soluciones integrales en transmisión y distribución de energía
+                eléctrica, mantenimiento industrial, servicios mineros y obras
+                de infraestructura.
+              </p>
+              <p
+                class="text-base mb-8 text-justify"
+                data-aos="fade-left"
+                data-aos-delay="500"
+              >
+                Nuestra empresa se destaca por su compromiso con la calidad, la
+                eficiencia operativa y la innovación tecnológica en cada
+                proyecto.
+              </p>
+
+              <h2
+                class="text-2xl font-semibold text-diseiBlue mb-4"
+                data-aos="fade-left"
+                data-aos-delay="600"
+              >
+                Nuestros servicios destacados:
+              </h2>
+              <ul
+                class="list-inside space-y-2 text-sm"
+                data-aos="fade-left"
+                data-aos-delay="700"
+              >
+                <li data-aos="fade-right" data-aos-delay="750">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 inline mr-2 text-diseiBlue"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    /></svg
+                  >Operación y mantenimiento de redes eléctricas
+                </li>
+                <li data-aos="fade-right" data-aos-delay="800">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 inline mr-2 text-diseiBlue"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    /></svg
+                  >Construcción de líneas de alta, media y baja tensión
+                </li>
+                <li data-aos="fade-right" data-aos-delay="850">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 inline mr-2 text-diseiBlue"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    /></svg
+                  >Construcción de estaciones transformadoras AT/MT
+                </li>
+                <li data-aos="fade-right" data-aos-delay="900">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 inline mr-2 text-diseiBlue"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    /></svg
+                  >Construcción de subestaciones transformadoras MT/BT
+                </li>
+                <li data-aos="fade-right" data-aos-delay="900">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 inline mr-2 text-diseiBlue"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    /></svg
+                  >Mantenimiento de instalaciones industriales
+                </li>
+                <li data-aos="fade-right" data-aos-delay="900">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 inline mr-2 text-diseiBlue"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    /></svg
+                  >Servicios eléctricos para la industria minera
+                </li>
+                <li data-aos="fade-right" data-aos-delay="900">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 inline mr-2 text-diseiBlue"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    /></svg
+                  >Generación de energía eléctrica
+                </li>
+                <li data-aos="fade-right" data-aos-delay="900">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 inline mr-2 text-diseiBlue"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    /></svg
+                  >Construcción de parques solares
+                </li>
+                <li data-aos="fade-right" data-aos-delay="900">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 inline mr-2 text-diseiBlue"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    /></svg
+                  >Obras civiles asociadas a proyectos eléctricos e industriales
+                </li>
+                <li data-aos="fade-right" data-aos-delay="900">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 inline mr-2 text-diseiBlue"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    /></svg
+                  >Planta propia de hormigón elaborado
+                </li>
+                <li data-aos="fade-right" data-aos-delay="900">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 inline mr-2 text-diseiBlue"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    /></svg
+                  >Perforaciones
+                </li>
+                <li data-aos="fade-right" data-aos-delay="900">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 inline mr-2 text-diseiBlue"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    /></svg
+                  >Digitalización de redes eléctricas en AT/MT/BT
+                </li>
+              </ul>
+              <div
+                class="mt-4 text-sm"
+                data-aos="fade-left"
+                data-aos-delay="950"
+              >
+                <a
+                  href="servicios.html"
+                  class="text-diseiBlue hover:underline font-semibold"
+                  >Ver todos nuestros servicios →</a
+                >
+              </div>
+              <div
+                class="text-center md:text-center mt-10"
+                data-aos="zoom-in"
+                data-aos-delay="1000"
+              >
+                <a
+                  href="contacto.html"
+                  class="bg-diseiBlue text-white px-8 py-3 rounded-lg hover:bg-blue-900 transition duration-300 transform hover:scale-105 text-base font-semibold shadow-lg"
+                  >Contáctanos Hoy</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
     <!-- Footer -->
     <footer class="bg-diseiBlue py-8 mt-12">
-        <div
-            class="container mx-auto px-6 sm:px-12 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6 text-white text-sm">
-            <div><img src="img/logos/disei-logo-white.png" alt="DISEI Logo" class="h-10 mx-auto md:mx-0 mb-4 md:mb-0"></div>
-            <div class="flex-grow md:pl-6">
-                <p>Corrientes 1060 Este, Capital, San Juan, Argentina</p>
-                <p>Tel: +54 264 570-5969 | Email: disei@disei.com.ar</p>
-            </div>
-            <div class="mt-4 md:mt-0">
-                © DISEI. Todos los derechos reservados.
-            </div>
+      <div
+        class="container mx-auto px-6 sm:px-12 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6 text-white text-sm"
+      >
+        <div>
+          <img
+            src="img/logos/disei-logo-white.png"
+            alt="DISEI Logo"
+            class="h-10 mx-auto md:mx-0 mb-4 md:mb-0"
+          />
         </div>
+        <div class="flex-grow md:pl-6">
+          <p>Corrientes 1060 Este, Capital, San Juan, Argentina</p>
+          <p>Tel: +54 264 570-5969 | Email: disei@disei.com.ar</p>
+        </div>
+        <div class="mt-4 md:mt-0">© DISEI. Todos los derechos reservados.</div>
+      </div>
     </footer>
 
     <script src="script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            AOS.init({
-                duration: 800,
-                once: true,
-                offset: 50,
-            });
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          once: true,
+          offset: 50,
         });
+      });
     </script>
-</body>
-
+  </body>
 </html>
